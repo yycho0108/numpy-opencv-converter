@@ -26,7 +26,6 @@ function(boost_python_module NAME)
     OUTPUT_NAME ${NAME}
     COMPILE_FLAGS "${FASTIDIOUS_FLAGS}"
     LINK_FLAGS -dynamic
-    PREFIX ""
     )
   if( WIN32 )
     set_target_properties(${NAME} PROPERTIES SUFFIX ".pyd")

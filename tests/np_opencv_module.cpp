@@ -29,6 +29,9 @@ cv::Mat test_with_args(const cv::Mat_<float>& in, const int& var1 = 1,
   return in.t();
 }
 
+namespace hmm{
+
+
 class GenericWrapper {
  public: 
   GenericWrapper(const int& _var_int = 1, const float& _var_float = 1.f,
@@ -52,6 +55,7 @@ class GenericWrapper {
   std::string var_string;  
 };
 
+}
 // Wrap a few functions and classes for testing purposes
 namespace fs { namespace python {
 
@@ -69,11 +73,11 @@ BOOST_PYTHON_MODULE(np_opencv_module)
           (py::arg("src"), py::arg("var1")=1, py::arg("var2")=10.0, py::arg("name")="test_name"));
 
   // Class
-  py::class_<GenericWrapper>("GenericWrapper")
+  py::class_<hmm::GenericWrapper>("GenericWrapper")
       .def(py::init<py::optional<int, float, double, std::string> >(
           (py::arg("var_int")=1, py::arg("var_float")=1.f, py::arg("var_double")=1.d,
            py::arg("var_string")=std::string("test"))))
-      .def("process", &GenericWrapper::process)
+      .def("process", &hmm::GenericWrapper::process)
       ;
 }
 
